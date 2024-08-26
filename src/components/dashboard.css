@@ -1,0 +1,43 @@
+.category-cnt {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.widget-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    flex: 0 0 72%;
+}
+
+.Logo {
+    border: 10px lightgray;
+    padding: 8px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.colon {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.dropdown-div {
+    display: flex;
+    align-items: center;
+    border-color: #14147d;
+    /* border: 100px; */
+}
+
+.dropdown-logo {}

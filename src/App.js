@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import Dashboard from './components/Dashboard';
+import Dashboard2 from './components/Dashboard2';
+import Navbar from './components/Navbar';
+import SideMenu from './components/SideMenu';
+// import Dashboard2 from './components/Dashboard2';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <Navbar />
+      <div className='Dashboard'>
+        <Dashboard />
+      </div>
+      {/* <Dashboard2/> */}
+      {/* <SideMenu/> */}
     </div>
   );
 }
