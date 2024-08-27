@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     /* background-color: #333; */
     /* color: #fff; */
 }
@@ -28,8 +28,8 @@
 
 
 .Home {
-    /* font-weight: 900; */
-    font-size: large;
+    font-weight: 400;
+        /* font-size: large; */
     color: #D4D7DB;
     margin-right: 2px;
 }
@@ -41,23 +41,23 @@
 
 .search-bar {
     flex: 0 0 30%;
-    padding: 10px;
+    /* padding: 10px; */
     /* 30% width for the search bar */
 }
 
 .search-bar input {
     width: 100%;
     padding: 5px 10px;
-    border-radius: 50px;
-    border: 10px;
-    /* border-color: rgb(76, 39, 9); */
-    font-size: 1em;
-    background-color: #F0F5FA;
+        border: 2px solid #e2efff;
+            border-radius: 10px;
+            /* font-size: 1em; */
+            font-size: 12px;
+            background-color: #f0f5fa;
 }
 
 .search-bar input::placeholder {
     color: #aaa;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .dropdown {
@@ -79,17 +79,21 @@
     border: none;
     font-size: 1em;
     background-color: #F0F5FA;
-    color: black;
+    color: #b8bcbd;
     width: 100%;
 }
 
 .dropdown-select option {
     background-color: #F0F5FA;
-    color: black;
+    color: #b8bcbd;
 }
 
 
+.searchBox:focus {
+    border: 1px solid #e2efff;
+}
 .dash {
     color: #3F6381;
-    font-size: large;
+        font-weight: 600;
 }
+        

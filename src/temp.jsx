@@ -38,3 +38,41 @@ import { GoClockFill } from "react-icons/go";
   "1": true,
   "3": true
 }
+
+
+//// add widgets functions:
+
+{/* {widgetsData
+            .reduce((categories, widget) => {
+              if (!categories.includes(widget.category)) {
+                categories.push(widget.category);
+              }
+              return categories;
+            }, [])
+            .map((categoryName) => (
+              <div key={categoryName} className="category-selection">
+                <div className="text-3xl text-red">{categoryName}</div>
+                {widgetsData
+                  .filter((widget) => widget.category === categoryName)
+                  .map((widget) => (
+                    <div key={widget.id} className="widget-selection">
+                      <input
+                        type="checkbox"
+                        checked={
+                          selectedWidgets[categoryName]?.[widget.id] || false
+                        }
+                        onChange={() =>
+                          handleCheckboxChange(categoryName, widget.id)
+                        }
+                      />
+                      <label>{widget.name}</label>
+                    </div>
+                  ))}
+                <button
+                  className="button"
+                  onClick={() => handleAddSelectedWidgets(categoryName)}
+                >
+                  Submit
+                </button>
+              </div>
+            ))} */}

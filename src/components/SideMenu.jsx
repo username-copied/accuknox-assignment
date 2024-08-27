@@ -30,53 +30,46 @@ const SideMenu = () => {
     dispatch(closeMenu());
   };
 
-  // const handleCheckboxChange = (xyz, widgetId) => {
-  //   setSelectedWidgets((prevSelected) => ([
-  //     ...prevSelected,
-  //     [xyz]: {
-  //       ...prevSelected[xyz],
-  //       [widgetId]: !prevSelected[xyz]?.[widgetId],
-  //     },
-  //   ]));
-  // };
-
   const handleCheckboxChange = (xyz, widgetId) => {
     setSelectedWidgets((prevSelected) => {
       const newSelectedWidgets = [...prevSelected];
       newSelectedWidgets.push(widgetId);
-      // Ensure the object at index `xyz` exists
-      // newSelectedWidgets[xyz] = {
-      //   ...newSelectedWidgets[xyz],
-      //   [widgetId]: !newSelectedWidgets[xyz]?.[widgetId],
-      // };
-
       return newSelectedWidgets;
     });
   };
 
+  const handleCancelCheckboxChange = () => {
+    setSelectedWidgets = [];
+  };
+
   console.log(selectedWidgets);
+  let selectedWidgetsInt = selectedWidgets.map(Number);
+  let selectedWidgetsInfo = [];
+  xyz.forEach((category) => {
+    category.widgets?.forEach((widget) => {
+      if (selectedWidgetsInt.includes(Number(widget.id))) {
+        selectedWidgetsInfo.push({
+          categoryName: category.categoryName,
+          widgetId: widget.id,
+          widgetName: widget.widgetName,
+          description: widget.description,
+          image: widget.image,
+        });
+      }
+    });
+  });
+
+  console.log(selectedWidgetsInfo);
 
   const handleAddSelectedWidgets = () => {
     console.log("Hiii");
     console.log(xyz);
-    // if (selectedWidgets[xyz]) {
-    //   const newWidgets = widgetsData.filter(
-    //     (widget) => widget.xyz === xyz && selectedWidgets[xyz][widget.id]
-    //   );
-    //   dispatch(replaceWidgets({ xyz, widgets: newWidgets }));
-    // }
     let tempArr = [];
     xyz.map((widget) => {
-      // console.log(widget.widgets);
-
       widget.widgets.map((tmp) => {
         let tempId = tmp.id;
         console.log(tmp.id);
         console.log(selectedWidgets);
-
-        //   if (selectedWidgets[parseInt(tempId)] == true) {
-        //     tempArr.push(tmp);
-        //   }
         if (selectedWidgets.includes(tmp.id.toString())) {
           tempArr.push(tmp);
         }
@@ -93,42 +86,17 @@ const SideMenu = () => {
   return (
     <div>
       <div className={`side-menu ${isOpen ? "open" : ""}`}>
-        <div className="menu-content">
-          {/* {widgetsData
-            .reduce((categories, widget) => {
-              if (!categories.includes(widget.category)) {
-                categories.push(widget.category);
-              }
-              return categories;
-            }, [])
-            .map((categoryName) => (
-              <div key={categoryName} className="category-selection">
-                <div className="text-3xl text-red">{categoryName}</div>
-                {widgetsData
-                  .filter((widget) => widget.category === categoryName)
-                  .map((widget) => (
-                    <div key={widget.id} className="widget-selection">
-                      <input
-                        type="checkbox"
-                        checked={
-                          selectedWidgets[categoryName]?.[widget.id] || false
-                        }
-                        onChange={() =>
-                          handleCheckboxChange(categoryName, widget.id)
-                        }
-                      />
-                      <label>{widget.name}</label>
-                    </div>
-                  ))}
-                <button
-                  className="button"
-                  onClick={() => handleAddSelectedWidgets(categoryName)}
-                >
-                  Submit
-                </button>
-              </div>
-            ))} */}
+        <div className="title-sideMenu">
+          <div className="title-sideMenu-div">Add Widgets</div>
+          <button className="title-sideMenu-btn" onClick={handleClose}>
+            &times;
+          </button>
+        </div>
+        <div className="tagline-sideMenu">
+          Personalise your dashboard by adding the following widgets
+        </div>
 
+        <div className="menu-content">
           <ul className="category-list">
             {xyz.map((category) => (
               <li
@@ -148,11 +116,9 @@ const SideMenu = () => {
           </ul>
         </div>
         <div className="menu-section">
-          <h3>{selectedCategory.categoryName} Widgets</h3>
           <ul className="widget-list">
             {selectedCategory.widgets.map((widget) => (
-              // <li key={widget.id}>{widget.widgetName}</li>
-              <div>
+              <div className="checkBox-div">
                 <input
                   type="checkbox"
                   checked={selectedWidgets.includes(widget.id)}
@@ -161,22 +127,27 @@ const SideMenu = () => {
                 <label className="label-widget">{widget.widgetName}</label>
               </div>
             ))}
-            <button
-              className="button"
-              onClick={() => handleAddSelectedWidgets(selectedCategory)}
-            >
-              Submit
-            </button>
+            {isOpen && (
+              <button
+                className="button sideMenuBtn"
+                onClick={() => handleAddSelectedWidgets(selectedCategory)}
+              >
+                Submit
+              </button>
+            )}
+            {isOpen && (
+              <button
+                className="button sideMenuCancelBtn"
+                onClick={handleCancelCheckboxChange}
+              >
+                Cancel
+              </button>
+            )}
           </ul>
         </div>
       </div>
 
       {isOpen && <div className="overlay" onClick={handleClose}></div>}
-      {isOpen && (
-        <button className="close-btn button" onClick={handleClose}>
-          Close
-        </button>
-      )}
     </div>
   );
 };
