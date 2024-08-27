@@ -3,7 +3,8 @@ import categoriesData from '../../components/categories.json';
 
 const initialState = {
     xyz: categoriesData.categories,
-    selectedCategoryId: 1,
+  selectedCategoryId: 1,
+    selectedWidgetsInfo : [],
 };
   
   const categorySlice = createSlice({
@@ -13,10 +14,14 @@ const initialState = {
       selectCategory: (state, action) => {
         state.selectedCategoryId = action.payload;
       },
-      
+      setWidgetsInfo: (state, action) => {
+        state.selectedWidgetsInfo = action.payload;
+
+
+      },
     },
   });
   
-  export const { selectCategory } = categorySlice.actions;
+  export const { selectCategory,setWidgetsInfo } = categorySlice.actions;
   export default categorySlice.reducer;
   

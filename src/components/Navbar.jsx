@@ -31,13 +31,14 @@ const Navbar = () => {
             </select>
           </li>
           <li>
-            <span href="#about">
+            <span>
               <MdOutlineNotificationsActive />
             </span>
           </li>
           <li>
-            <span href="#contact">
+            <span className="profile">
               <CgProfile />
+              User Profile
             </span>
           </li>
         </ul>

@@ -7,6 +7,6 @@ export const store = configureStore({
   reducer: {
     widgets: widgetReducer,
     menu: menuReducer,
-    category : categorySlice
+    category: categorySlice,
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { replaceWidgets, removeWidget } from "../features/widgets/widgetSlice";
 import { toggleMenu, closeMenu } from "../features/menu/menuSlice";
@@ -8,16 +8,21 @@ import widgetsData from "../widgets.json";
 import { SlRefresh } from "react-icons/sl";
 import { GoClockFill } from "react-icons/go";
 import SideMenu from "./SideMenu";
+import Card from "./Card";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.widgets.categories);
+  const selectedWidgetsInfo = useSelector(
+    (state) => state.category.selectedWidgetsInfo
+  );
   const isOpen = useSelector((state) => state.menu.isOpen);
+  // const
 
   const handleRemoveWidget = (category, widgetId) => {
     dispatch(removeWidget({ category, widgetId }));
   };
 
+  const [filteredDataByCategory, setFilteredDataByCategory] = useState([]);
   const [selectedWidgets, setSelectedWidgets] = useState({});
 
   const handleToggle = () => {
@@ -48,6 +53,28 @@ const Dashboard = () => {
     }
   };
 
+  useEffect(() => {
+    const uniqueCategories = [
+      ...new Set(selectedWidgetsInfo.map((item) => item.categoryName)),
+    ];
+
+    console.log("Unique Categories:", uniqueCategories);
+    setFilteredDataByCategory(
+      uniqueCategories.map((category) => {
+        return {
+          categoryName: category,
+          items: selectedWidgetsInfo.filter(
+            (item) => item.categoryName === category
+          ),
+        };
+      })
+    );
+  }, [selectedWidgetsInfo]);
+
+  console.log("Filtered Data by Category:", filteredDataByCategory);
+  console.log(selectedWidgetsInfo);
+  // console.log(categories);
+
   return (
     <div className="container">
       <SideMenu />
@@ -74,7 +101,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {Object.entries(categories).map(([categoryName, widgets]) => (
+      {selectedWidgetsInfo.map(([categoryName, widgets]) => (
         <div key={categoryName} className="category">
           <h2>{categoryName}</h2>
           <div
@@ -112,6 +139,7 @@ const Dashboard = () => {
           </div>
         </div>
       ))}
+      <Card />
     </div>
   );
 };
