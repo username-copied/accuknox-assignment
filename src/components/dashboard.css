@@ -63,6 +63,11 @@
   border: 20px double #f0f0f5;
 }
 
+.emptyCards-div{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+
 .container {
-  height: 100vh;
+  height: 100%;
 }

@@ -30,7 +30,7 @@ const Navbar = () => {
               <option value="seo">SEO</option>
             </select>
           </li>
-          <li>
+          <li className="profile-logo">
             <span>
               <MdOutlineNotificationsActive />
             </span>
