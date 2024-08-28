@@ -4,7 +4,7 @@ import './navbar.css'; // Import the CSS file
 import { SlMagnifier } from "react-icons/sl";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
-
+import "./dashboard.css";
 
 
 const Navbar = () => {
