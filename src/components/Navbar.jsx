@@ -16,7 +16,9 @@ const Navbar = () => {
             <span className="dash">Dashboard V2</span>
           </li>
           <li className="search-bar">
-            <SlMagnifier />
+            <span className="search">
+              <SlMagnifier />
+            </span>
             <input
               className="searchBox"
               type="text"

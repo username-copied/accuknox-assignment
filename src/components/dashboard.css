@@ -63,11 +63,17 @@
   border: 20px double #f0f0f5;
 }
 
-.emptyCards-div{
+.emptyCardContainer{
   display: grid;
   grid-template-columns: repeat(3,1fr);
+  gap: 10px;
 }
 
 .container {
   height: 100%;
+  width: 100%;
+}
+
+.widget-image{
+  height: 150px;
 }

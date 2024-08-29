@@ -172,12 +172,11 @@ import { toggleMenu, closeMenu } from "../features/menu/menuSlice";
 import "./dashboard.css";
 import "./navbar.css";
 import widgetsData from "../widgets.json";
+import categoryData from "../components/categories.json";
 
 import { SlRefresh } from "react-icons/sl";
 import { GoClockFill } from "react-icons/go";
 import SideMenu from "./SideMenu";
-
-const MAX_WIDGETS_PER_CATEGORY = 3; // Set the maximum number of widgets per category
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -209,7 +208,8 @@ const Dashboard = () => {
   // };
 
   const handleRemoveWidget = (category, widgetId) => {
-    //     dispatch(removeWidget({ category, widgetId }));
+    console.log("Removing widget", category, widgetId);
+    dispatch(removeWidget({ category, widgetId }));
   };
 
   // const handleAddSelectedWidgets = (category) => {
@@ -242,29 +242,44 @@ const Dashboard = () => {
     );
   }, [selectedWidgetsInfo]);
 
+  const getCategoryWidgetCount = (categoryName) => {
+    const category = categoryData.categories.find(
+      (cat) => cat.categoryName === categoryName
+    );
+    if (category) {
+      return category.widgets.length;
+    } else {
+      return 0; // Or handle the case when the category is not found
+    }
+  };
+
   const renderEmptyCards = (categoryName, widgetsCount) => {
     const emptyCards = [];
-    const cardsToAdd = 1;
+    const cnt = getCategoryWidgetCount(categoryName);
+    let cardsToAdd = 0;
+    if (widgetsCount === cnt) {
+      cardsToAdd = 0;
+    } else {
+      cardsToAdd = 1;
+    }
 
     for (let i = 0; i < cardsToAdd; i++) {
       emptyCards.push(
-        <div className="emptyCards-div">
-          <div
-            key={`empty-${categoryName}-${i}`}
-            className="widget empty-card"
-            style={{
-              padding: "10px",
-              width: "30vw",
-              height: "250px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button onClick={handleToggle} className="button emptyCardBtn">
-              &#43; Add Widget
-            </button>
-          </div>
+        <div
+          key={`empty-${categoryName}-${i}`}
+          className="widget empty-card"
+          style={{
+            padding: "10px",
+            width: "28vw",
+            height: "250px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <button onClick={handleToggle} className="button emptyCardBtn">
+            &#43; Add Widget
+          </button>
         </div>
       );
     }
@@ -312,20 +327,35 @@ const Dashboard = () => {
                 <h3>{widget.widgetName}</h3>
                 <div>{widget.category}</div>
                 <img
+                  className="widget-image"
                   src={widget.image}
                   alt={widget.name}
-                  style={{ width: "100%", maxWidth: "150px" }}
+                  // style={{ width: "100%", maxWidth: "150px" }}
                 />
+                {/* {console.log(widget)} */}
+
+                {/* {widget.chartConfig ? (
+                  <DonutChart
+                    data={widget.chartConfig.data}
+                    options={widget.chartConfig.options}
+                  />
+                ) : (
+                  <p>No chart configuration available</p>
+                )} */}
+                {console.log("Hiiiiii")}
+                {console.log(widget)}
                 <button
                   onClick={() =>
-                    handleRemoveWidget(widget.categoryName, widget.id)
+                    handleRemoveWidget(widget.categoryName, widget.widgetId)
                   }
                 >
                   Remove
                 </button>
               </div>
             ))}
-            {renderEmptyCards(data.categoryName, data.items.length)}
+            <div className="emptyCardContainer">
+              {renderEmptyCards(data.categoryName, data.items.length)}
+            </div>
           </div>
         </div>
       ))}

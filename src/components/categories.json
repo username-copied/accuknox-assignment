@@ -6,15 +6,15 @@
       "widgets": [
         {
           "id": "1",
-          "widgetName": "Widget 1",
+          "widgetName": "Cloud Accounts",
           "description": "This is Widget 1.",
-          "image": "https://via.placeholder.com/150"
+          "image": "/assets/images/donutChart1.png"
         },
         {
           "id": "2",
-          "widgetName": "Widget 2",
+          "widgetName": "Cloud Accounts Risk Assessment",
           "description": "This is Widget 2.",
-          "image": "https://via.placeholder.com/150"
+          "image": "/assets/images/donutChart2.png"
         },
         {
           "id": "3",
@@ -32,7 +32,7 @@
           "id": "4",
           "widgetName": "Widget 4",
           "description": "This is Widget 4.",
-          "image": "https://via.placeholder.com/150"
+          "image": "/assets/images/donutChart3.png"
         },
         {
           "id": "5",

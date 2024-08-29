@@ -8,22 +8,22 @@ const widgetSlice = createSlice({
   name: 'widgets',
   initialState,
   reducers: {
-//     replaceWidgets: (state, action) => {
-//       const { category, widgets } = action.payload;
-//       if (!state.categories[category]) {
-//         state.categories[category] = [];
-//       }
-//       state.categories[category] = [...state.categories[category], ...widgets];
-//     },
-//     removeWidget: (state, action) => {
-//       const { category, widgetId } = action.payload;
-//       if (state.categories[category]) {
-//         state.categories[category] = state.categories[category].filter(widget => widget.id !== widgetId);
-//         if (state.categories[category].length === 0) {
-//           delete state.categories[category];
-//         }
-//       }
-    //     },
+    replaceWidgets: (state, action) => {
+      const { category, widgets } = action.payload;
+      if (!state.categories[category]) {
+        state.categories[category] = [];
+      }
+      state.categories[category] = [...state.categories[category], ...widgets];
+    },
+    removeWidget: (state, action) => {
+      const { category, widgetId } = action.payload;
+      if (state.categories[category]) {
+        state.categories[category] = state.categories[category].filter(widget => widget.id !== widgetId);
+        if (state.categories[category].length === 0) {
+          delete state.categories[category];
+        }
+      }
+        },
     
     addWidgets: (state, action) => {
       const { category, widgets } = action.payload;
@@ -36,17 +36,17 @@ const widgetSlice = createSlice({
       );
       state[category].push(...newWidgets);
     },
-    removeWidget: (state, action) => {
-      const { category, widgetId } = action.payload;
-      if (state[category]) {
-        state[category] = state[category].filter(widget => widget.id !== widgetId);
-      }
-    },
+    // removeWidget: (state, action) => {
+    //   const { category, widgetId } = action.payload;
+    //   if (state[category]) {
+    //     state[category] = state[category].filter(widget => widget.id !== widgetId);
+    //   }
+    // },
 
   },
 });
 
-export const { addWidgets, removeWidget } = widgetSlice.actions;
+export const { replaceWidgets,addWidgets, removeWidget } = widgetSlice.actions;
 export default widgetSlice.reducer;
 
 

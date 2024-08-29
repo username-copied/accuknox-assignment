@@ -328,7 +328,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleMenu, closeMenu } from "../features/menu/menuSlice";
-import { addWidgets, removeWidget } from "../features/widgets/widgetSlice";
+import {
+  replaceWidgets,
+  addWidgets,
+  removeWidget,
+} from "../features/widgets/widgetSlice";
 import "./SideMenu.css";
 import {
   selectCategory,
@@ -496,12 +500,7 @@ const SideMenu = () => {
             {isOpen && (
               <button
                 className="button sideMenuCancelBtn"
-                onClick={() =>
-                  setSelectedWidgetsByCategory((prevSelected) => ({
-                    ...prevSelected,
-                    [selectedCategory.id]: [],
-                  }))
-                }
+                onClick={handleAddSelectedWidgets}
               >
                 Cancel
               </button>

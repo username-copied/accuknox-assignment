@@ -1,13 +1,13 @@
-import './App.css';
-import Dashboard from './components/Dashboard';
-import Navbar from './components/Navbar';
-
+import "./App.css";
+import Dashboard from "./components/Dashboard";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className='app'>
+    <div className="app">
       <Navbar />
-      <div className='Dashboard'>
+
+      <div className="Dashboard">
         <Dashboard />
       </div>
     </div>
